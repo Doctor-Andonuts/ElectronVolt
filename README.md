@@ -1,2 +1,2 @@
-Create a new object with minamlist copy from some other object (stone furnace?)
-	/objets/wired/energy/coalgenerator/
+* Get my new object to open up an interface window
+* Get that interface window to do something when a button is hit

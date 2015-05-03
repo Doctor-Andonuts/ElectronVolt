@@ -8,7 +8,7 @@
 	"printable" : false,
 
 	"inventoryIcon" : "coalgeneratoricon.png",
-
+	
 	"orientations" : [
 		{
 			"dualImage" : "coalgenerator.png:<color>",
@@ -19,5 +19,9 @@
 			"spaceScan" : 0.1,
 			"anchors" : [ "bottom" ]
 		}
-	]
+	],
+	
+	"scripts" : [ "coalgenerator.lua" ],
+	"scriptDelta" : 10
+
 }
