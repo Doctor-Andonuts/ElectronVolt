@@ -22,6 +22,6 @@
 	],
 	
 	"scripts" : [ "coalgenerator.lua" ],
-	"scriptDelta" : 10
+	"scriptDelta" : 20
 
 }
