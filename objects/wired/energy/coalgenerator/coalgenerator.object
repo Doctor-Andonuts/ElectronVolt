@@ -6,6 +6,7 @@
 	"race" : "generic",
 	"price" : 200,
 	"printable" : false,
+	"objectType" : "container",
 
 	"inventoryIcon" : "coalgeneratoricon.png",
 	
@@ -21,6 +22,11 @@
 		}
 	],
 	
+	"slotCount" : 1,
+	"uiConfig" : "/interface/chests/chest1.config",
+	"frameCooldown" : 5,
+	"autoCloseCooldown" : 3600,
+
 	"scripts" : [ "coalgenerator.lua" ],
 	"scriptDelta" : 20
 

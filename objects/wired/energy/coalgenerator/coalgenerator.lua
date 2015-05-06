@@ -32,7 +32,7 @@ function getFuelItems()
 			local item = world.takeItemDrop(entityId)
 			if item then
 				if self.fuelValues[item.name] then
-					while item.count > 0 and self.fuelCurrent < self.fuelMax - self.fuelValues[item.name]do
+					while item.count > 0 and self.fuelCurrent < self.fuelMax - self.fuelValues[item.name] do
 						self.fuelCurrent = self.fuelCurrent + self.fuelValues[item.name]
 						item.count = item.count - 1
 					end
@@ -54,7 +54,12 @@ end
 
 function update(dt)
 	getFuelItems()
-	useFuel()
+	
+	local item = world.containerItemAt(entity.id(), 0)
+	if item then
+		world.logInfo(item.name .. " x")
+		-- world.containerTakeNumItemsAt(entity.id(), 0, 1) -- Grabs 1 of the item in the 0th slot
+	end
 	world.logInfo("Fuel level: " .. self.fuelCurrent)
 	world.logInfo("---")
 end
