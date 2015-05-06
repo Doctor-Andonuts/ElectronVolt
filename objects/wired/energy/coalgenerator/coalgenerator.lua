@@ -1,66 +1,46 @@
 function init()
-	--entity.setInteractive(true)
-	
-	local pos = entity.position()
-	self.itemPickupArea = {
-		{pos[1] - 1, pos[2] - 1},
-		{pos[1] + 1, pos[2]}
-	}
-	self.dropPoint = {pos[1] + 5, pos[2] + 1}
-
 	self.fuelCurrent = 0
-	self.fuelMax = 1000
-	self.fuelValues = {
-		coalore = 100
+	self.fuelMax = 10000
+
+	self.fuelList = {
+		coalore = {
+			timeToCook = 20,
+			energyPerSecond = 10
+		}
 	}
+
+	self.processingFuel = false
+	self.processingFuelName = ""
+	self.timeToCook = 0
 end
 
--- function ejectItem(item)
-	-- if next(item.data) == nil then
-		-- world.spawnItem(item.name, self.dropPoint, item.count)
-	-- else
-		-- world.spawnItem(item.name, self.dropPoint, item.count, item.data)
-	-- end
--- end
-
-function getFuelItems()
-	local dropIds = world.itemDropQuery(self.itemPickupArea[1], self.itemPickupArea[2])
-	for i, entityId in ipairs(dropIds) do
-		local itemName = world.entityName(entityId)
-		world.logInfo(itemName)
-		if self.fuelValues[itemName] then
-			local item = world.takeItemDrop(entityId)
-			if item then
-				if self.fuelValues[item.name] then
-					while item.count > 0 and self.fuelCurrent < self.fuelMax - self.fuelValues[item.name] do
-						self.fuelCurrent = self.fuelCurrent + self.fuelValues[item.name]
-						item.count = item.count - 1
-					end
-				end
-			
-				-- if item.count > 0 then
-					-- ejectItem(item)
-				-- end
-			end
-		end
-	end
-end
-
-function useFuel()
-	if self.fuelCurrent > 0 then
-		self.fuelCurrent = self.fuelCurrent - 1
-	end
-end
 
 function update(dt)
-	getFuelItems()
-	
-	local item = world.containerItemAt(entity.id(), 0)
-	if item then
-		world.logInfo(item.name .. " x")
-		-- world.containerTakeNumItemsAt(entity.id(), 0, 1) -- Grabs 1 of the item in the 0th slot
+	if not self.processingFuel then
+		item = world.containerItemAt(entity.id(), 0)
+		if item and self.fuelList[item.name] then
+			world.containerTakeNumItemsAt(entity.id(), 0, 1) -- Grabs 1 of the item in the 0th slot
+			self.processingFuel = true
+			self.processingFuelName = item.name
+			self.timeToCook = self.fuelList[item.name]["timeToCook"]
+		end
 	end
-	world.logInfo("Fuel level: " .. self.fuelCurrent)
+
+	if self.processingFuel then
+		if self.timeToCook > 0 then
+			self.timeToCook = self.timeToCook - dt
+			self.fuelCurrent = self.fuelCurrent + (self.fuelList[self.processingFuelName]["energyPerSecond"] * dt)
+		else
+			self.processingFuel = false
+			self.processingFuelName = ""
+			self.timeToCook = 0		
+		end
+	end
+
+	world.logInfo("processingFuelName: " .. self.processingFuelName)
+	world.logInfo("timeToCook: " .. self.timeToCook)
+	world.logInfo("fuelCurrent: " .. self.fuelCurrent)
+	world.logInfo("fuelMax: " .. self.fuelMax)
 	world.logInfo("---")
 end
 

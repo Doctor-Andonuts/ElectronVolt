@@ -2,23 +2,20 @@
 
 ===== Basic Usage =====
 
-I can not open custom interfaces and custom buttons with hooks so I have to do this another way. The way starfoundry did it is good enough for now.
-
-Interacting with the generator causes it to turn on or off (it doesnt matter if there is energy in the internal battery or if it is proccessing coalore currently, it will pause everything until turned back on and resume like normal.
-
-Dropping coalore infront of the generator causes the generator to pickup the coal and use it. When picking up the coalore, it will begin adding energy to the internal battery at a specified rate and the coal will be consumed.
-
-
-Questions
-	Can you drop a large stack of coalore that it will proccess?
-	What happens if the generator is 99% full and you drop some coalore, will it take them and waste the excess or will it not take it until there is room for all of the coal energy in the buffer.
-	
-	There could be energy leaving the buffer while coal is being converted into energy in the buffer.
-	
-Can I make an interface and can LUA read the items in the container, if so, I use that and the player can add a stack of ore to a 1 slot container and I just take a coalore out as needed.  I might even be able to put a progress bar in the interface to show the cooking?
+Add InboundNode for turning the generator on and off
+Move the inventory slot over to the left so text can be added
+Add text to the interface
+	Current Energy Level / Max Energy Level
+	How long the current piece of coal it is proccessing will take
+	Energy Creation rate
+	Energy Consumption rate
+	If the item is not able to be consumed, and a list of items that work
+Add progress bar to the interface to show current energy level
+Add OutboundNodes for providing power to something else (1, 2, 3?)
+	It needs to check what the device is on the other end and if it is able to use power and how much power it uses
 
 
-===== TEST =====
-I may want to install minecraft and a mod with admin mode to test how that stuff works
+Coalore take 20 seconds to convert to energy per 1 coalore
+Coalore provides 10 energy per second of processing (making it provide 200 fuel total)
+The generator can hold 10,000 energy total (50 coal and 16m40s to fill it up from empty)
 
-I still need to figure out what can go over a wire
