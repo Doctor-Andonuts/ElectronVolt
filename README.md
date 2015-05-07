@@ -4,7 +4,7 @@
 
 Add InboundNode for turning the generator on and off
 Move the inventory slot over to the left so text can be added
-Add text to the interface
+Add text to the interface - I don't think I can do this
 	Current Energy Level / Max Energy Level
 	How long the current piece of coal it is proccessing will take
 	Energy Creation rate

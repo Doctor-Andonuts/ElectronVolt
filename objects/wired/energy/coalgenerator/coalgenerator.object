@@ -9,7 +9,7 @@
 	"objectType" : "container",
 
 	"inventoryIcon" : "coalgeneratoricon.png",
-	
+
 	"orientations" : [
 		{
 			"dualImage" : "coalgenerator.png:<color>",
@@ -21,9 +21,9 @@
 			"anchors" : [ "bottom" ]
 		}
 	],
-	
+
 	"slotCount" : 1,
-	"uiConfig" : "/interface/chests/chest1.config",
+	"uiConfig" : "/interface/energy/coalgenerator.config",
 	"frameCooldown" : 5,
 	"autoCloseCooldown" : 3600,
 

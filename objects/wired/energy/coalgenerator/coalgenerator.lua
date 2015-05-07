@@ -33,7 +33,7 @@ function update(dt)
 		else
 			self.processingFuel = false
 			self.processingFuelName = ""
-			self.timeToCook = 0		
+			self.timeToCook = 0
 		end
 	end
 
@@ -44,12 +44,3 @@ function update(dt)
 	world.logInfo("---")
 end
 
---[[
-function onInteraction(args)
-	world.logInfo("Test")
-end
-
-function uninit()
-
-end
-]]--
